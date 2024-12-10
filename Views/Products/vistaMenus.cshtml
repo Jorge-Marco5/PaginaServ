@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menús Generados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Menús Personalizados</h2>
+        <p>Estos son tus menús para la semana:</p>
+        <ul class="list-group">
+            <li class="list-group-item">Lunes: Sopa de verduras, Pollo asado, Ensalada</li>
+            <li class="list-group-item">Martes: Ensalada de pasta, Pescado a la plancha</li>
+            <li class="list-group-item">Miércoles: Arroz integral, Pollo a la parrilla</li>
+            <li class="list-group-item">Jueves: Crema de zanahoria, Carne de res</li>
+            <li class="list-group-item">Viernes: Ensalada de quinoa, Pechuga de pollo</li>
+            <!-- Agregar más menús según sea necesario -->
+        </ul>
+
+        <script>
+        public IActionResult Register()
+        {
+            ViewData["Mensaje"] = "Complete los detalles de registro";
+            return View();
+        }
+        </script>
+        <!--MOSTRAR MEMSAJE-->
+        <p style="color: black;" >@ViewData["Mensaje"]</p>
+
+        <a asp-controller="Home" asp-action="index" class="btn btn-primary mt-3">Volver al Inicio</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
