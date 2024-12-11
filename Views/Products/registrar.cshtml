@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #FFF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background-color: #990000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header a {
+            color: #FFF;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #2E1A47;
+            color: #FFF;
+            padding: 10px 0;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(14, 1, 1, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: #FFF;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #4A2A76;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .right-icon button {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .right-icon img {
+            width: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-family: serif;
+            font-size: 48px;
+            margin-top: 50px;
+        }
+
+        .description {
+            font-size: 18px;
+            color: #D3D3D3;
+            margin: 10px 0 30px;
+        }
+
+        .table-container {
+            margin: 0 auto;
+            width: 80%;
+            max-width: 700px;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        table {
+            margin-top: 50px;
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #444;
+            color: #FFF;
+        }
+
+        td {
+            background-color: #555;
+            color: #FFF;
+        }
+
+        .button {
+            margin-top: 25px;
+            background-color: transparent;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            padding: 10px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #FF6347;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+
+        /* Estilos para el formulario de edición */
+        .form-container {
+            display: none;
+            margin-top: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .form-container input {
+            margin: 10px 0;
+            padding: 12px;
+            width: 100%;
+            border: 2px solid #FFD700;
+            background-color: #444;
+            color: #FFF;
+            font-size: 16px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container input:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        .form-container button {
+            background-color: transparent;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .form-container button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="nav-links">
+            <a asp-controller="Home" asp-action="home">Inicio</a>
+            <div class="dropdown">
+                <a href="#">Servicio</a>
+                <div class="dropdown-content">
+                    <a asp-controller="Products" asp-action="registrar">Registrar</a>
+                    <a asp-controller="Products" asp-action="consultar">Consultar</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-icon">
+            <button  asp-controller="Account" asp-action="crear_perfil">
+                <img src="@Url.Content("~/images/Account/contacto.png")" alt="Perfil">
+            </button>
+        </div>
+    </div>
+
+    <h1>Registra</h1>
+    <p class="description">Te recomendamos llenar el campo de salud ya que te será más fácil al momento de crear tu comida</p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Edad</th>
+                    <th>Peso</th>
+                    <th>Alergias</th>
+                    <th>Enfermedades</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td>40</td>
+                    <td>60 kg</td>
+                    <td>Ninguna</td>
+                    <td>Diabetes</td>
+                    <td><button class="edit-btn" onclick="editRow(this)">Editar</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a type="submit" asp-controller="Products" asp-action="registro" class="button">Siguiente</a>
+    </div>
+    
+    <!-- onclick="window.location.href='registro.html'"-->
+    
+    <p class="note">*No olvides llenar este campo</p>
+
+    <!-- Formulario para editar -->
+    <div class="form-container" id="editForm">
+        <h2>Editar Registro</h2>
+        <form id="editFormContent">
+            <input type="text" id="editEdad" placeholder="Edad" required>
+            <input type="text" id="editPeso" placeholder="Peso" required>
+            <input type="text" id="editAlergias" placeholder="Alergias" required>
+            <input type="text" id="editEnfermedades" placeholder="Enfermedades" required>
+            <button type="button" onclick="saveChanges()">Guardar cambios</button>
+        </form>
+    </div>
+
+    <script>
+        let editingRow = null;
+
+        // Función para editar una fila
+        function editRow(button) {
+            editingRow = button.closest('tr');
+            const cells = editingRow.cells;
+
+            // Llenar el formulario con los valores actuales
+            document.getElementById('editEdad').value = cells[0].textContent;
+            document.getElementById('editPeso').value = cells[1].textContent;
+            document.getElementById('editAlergias').value = cells[2].textContent;
+            document.getElementById('editEnfermedades').value = cells[3].textContent;
+
+            // Mostrar el formulario de edición
+            document.getElementById('editForm').style.display = 'block';
+        }
+
+        // Función para guardar los cambios
+        function saveChanges() {
+            if (editingRow) {
+                // Obtener los nuevos valores del formulario
+                const edad = document.getElementById('editEdad').value;
+                const peso = document.getElementById('editPeso').value;
+                const alergias = document.getElementById('editAlergias').value;
+                const enfermedades = document.getElementById('editEnfermedades').value;
+
+                // Actualizar la fila con los nuevos valores
+                editingRow.cells[0].textContent = edad;
+                editingRow.cells[1].textContent = peso;
+                editingRow.cells[2].textContent = alergias;
+                editingRow.cells[3].textContent = enfermedades;
+            }
+
+            // Ocultar el formulario de edición
+            cancelEdit();
+        }
+
+        // Función para cancelar la edición
+        function cancelEdit() {
+            document.getElementById('editForm').style.display = 'none';
+            editingRow = null;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #FFF;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #990000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .left-links,
+        .header .right-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .header a {
+            color: #FFF;
+            font-size: 18px;
+            margin: 0 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        .header .right-icon img {
+            width: 20px;
+            vertical-align: middle;
+        }
+
+        .logo img {
+            width: 125px;
+            margin-top: 20px;
+        }
+
+        .change-password-container {
+            margin-top: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        .input-field {
+            width: 80%;
+            max-width: 300px;
+            padding: 8px;
+            margin: 10px 0;
+            font-size: 16px;
+            background-color: #d3d3d3;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .accept-button {
+            background-color: #4d6460;
+            color: #FFF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 20px;
+            width: 15%;
+        }
+
+        .accept-button:hover {
+            background-color: #3b4f4a;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="left-links">
+            <a href="#inicio" onclick="window.location.href='iniciar_seccion.html'">Inicio</a>
+            <a href="#servicio">Servicio</a>
+        </div>
+        <div class="right-icon">
+            <a href="#perfil"><img src="@Url.Content("~/images/Account/contacto.png")" alt="Perfil"></a>
+        </div>
+    </div>
+
+    <div class="logo">
+        <img src="@Url.Content("~/images/Account/logo.png")" alt="Nour">
+    </div>
+
+    <div class="change-password-container">
+        <h1>CAMBIAR CONTRASEÑA</h1>
+        <form action="#" method="post">
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" class="input-field" required><br>
+            
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" class="input-field" required><br>
+            
+            <label for="confirmar-contrasena">Confirmar Contraseña:</label>
+            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" class="input-field" required><br>
+            
+            <button type="submit" class="accept-button">Aceptar</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #FFF;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #990000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .left-links,
+        .header .right-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .header a {
+            color: #FFF;
+            font-size: 18px;
+            margin: 0 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        .header .right-icon a {
+            margin-left: 10px;
+        }
+
+        .header .right-icon img {
+            width: 20px;
+            vertical-align: middle;
+        }
+
+        .logo img {
+            width: 150px;
+            margin-top: 20px;
+        }
+
+        .create-profile-container {
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        .input-field {
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            background-color: #bfbfbf;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .accept-button {
+            background-color: #4d6460;
+            color: #FFF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 20px;
+        }
+
+        .accept-button:hover {
+            background-color: #3b4f4a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="left-links">
+            <a asp-controller="Home" asp-action="home">Inicio</a>
+        </div>
+        <div class="right-icon">
+            <button  asp-controller="Account" asp-action="crear_perfil">
+                <img src="@Url.Content("~/images/Account/contacto.png")" alt="Perfil">
+            </button>
+        </div>
+    </div>
+
+    <div class="logo">
+        <img src="@Url.Content("~/images/Account/logo.png")" alt="Nour">
+    </div>
+
+    <div class="create-profile-container">
+        <h1>CREAR PERFIL</h1>
+        <form action="#" method="post">
+            <label for="nombre" style="display: block; text-align: left; margin: 0 auto; width: 80%; max-width: 300px;">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="input-field" required><br>
+            
+            <label for="correo" style="display: block; text-align: left; margin: 0 auto; width: 80%; max-width: 300px;">Correo:</label>
+            <input type="email" id="correo" name="correo" class="input-field" required><br>
+            
+            <label for="contrasena" style="display: block; text-align: left; margin: 0 auto; width: 80%; max-width: 300px;">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" class="input-field" required><br>
+            
+            <button type="submit" class="accept-button">Aceptar</button>
+        </form>
+    </div>
+
+</body>
+</html>

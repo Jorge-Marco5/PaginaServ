@@ -7,4 +7,16 @@ public class AccountController : Controller
     {
         return View(); // Esto cargará la vista en Views/Account/Register.cshtml
     }
+
+    public
+     IActionResult crear_perfil()
+    {
+        return View(); // Esto cargará la vista en Views/Account/Register.cshtml
+    }
+
+    public
+     IActionResult cambiar_contraseña()
+    {
+        return View(); // Esto cargará la vista en Views/Account/Register.cshtml
+    }
 }

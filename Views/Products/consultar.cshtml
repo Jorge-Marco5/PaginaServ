@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #FFF;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #990000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header a {
+            color: #FFF;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #2E1A47;
+            color: #FFF;
+            padding: 10px 0;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(14, 1, 1, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: #FFF;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #4A2A76;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .right-icon button {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .right-icon img {
+            width: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: serif;
+            font-size: 48px;
+            margin-top: 20px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .menu button {
+            background-color: transparent;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            padding: 10px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .menu button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        .table-container {
+            margin: 0 auto;
+            width: 90%;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            display: none;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #444;
+            color: #FFF;
+        }
+
+        td {
+            background-color: #555;
+            color: #FFF;
+        }
+
+        .food-img {
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #FF6347;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .active {
+            display: table;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="nav-links">
+            <a asp-controller="Home" asp-action="home">Inicio</a>
+            <div class="dropdown">
+                <a href="#">Servicio</a>
+                <div class="dropdown-content">
+                    <a asp-controller="Products" asp-action="registrar">Registrar</a>
+                    <a asp-controller="Products" asp-action="consultar">Consultar</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-icon">
+            <button onclick="location.href='#'">
+                <img src="@Url.Content("~/images/Account/contacto.png")" alt="Perfil">
+            </button>
+        </div>
+    </div>
+
+    <h1>Consulta</h1>
+
+    <div class="menu">
+        <button onclick="showTable('desayuno')">Desayuno</button>
+        <button onclick="showTable('comida')">Comida</button>
+        <button onclick="showTable('cenas')">Cenas</button>
+    </div>
+
+    <div class="table-container">
+        <table id="desayuno" class="active">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Porción</th>
+                    <th>Ingredientes</th>
+                    <th>Descripción</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Huevo con jamón</td>
+                    <td>2 Personas</td>
+                    <td>Huevo, jamón, uvas, manzana</td>
+                    <td>Huevo revuelto con jamón, decorado con frutas</td>
+                    <td><img class="food-img" src="html/huevo_jamon.png" alt="Huevo con jamón"></td>
+                </tr>
+                <tr>
+                    <td>Huevo con jamón</td>
+                    <td>2 Personas</td>
+                    <td>Huevo, jamón, uvas, manzana</td>
+                    <td>Huevo revuelto con jamón, decorado con frutas</td>
+                    <td><img class="food-img" src="html/huevo_jamon.png" alt="Huevo con jamón"></td>
+                </tr>
+                <tr>
+                    <td>Huevo con jamón</td>
+                    <td>2 Personas</td>
+                    <td>Huevo, jamón, uvas, manzana</td>
+                    <td>Huevo revuelto con jamón, decorado con frutas</td>
+                    <td><img class="food-img" src="html/huevo_jamon.png" alt="Huevo con jamón"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="comida">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Porción</th>
+                    <th>Ingredientes</th>
+                    <th>Descripción</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pollo asado</td>
+                    <td>4 Personas</td>
+                    <td>Pollo, especias, limón</td>
+                    <td>Pollo asado al horno con especias y limón</td>
+                    <td><img class="food-img" src="html/pollo_asado.png" alt="Pollo asado"></td>
+                </tr>
+                <tr>
+                    <td>Pollo asado</td>
+                    <td>4 Personas</td>
+                    <td>Pollo, especias, limón</td>
+                    <td>Pollo asado al horno con especias y limón</td>
+                    <td><img class="food-img" src="html/pollo_asado.png" alt="Pollo asado"></td>
+                </tr>
+                <tr>
+                    <td>Pollo asado</td>
+                    <td>4 Personas</td>
+                    <td>Pollo, especias, limón</td>
+                    <td>Pollo asado al horno con especias y limón</td>
+                    <td><img class="food-img" src="html/pollo_asado.png" alt="Pollo asado"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table id="cenas">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Porción</th>
+                    <th>Ingredientes</th>
+                    <th>Descripción</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ensalada ligera</td>
+                    <td>2 Personas</td>
+                    <td>Lechuga, tomate, zanahoria</td>
+                    <td>Ensalada fresca con aderezo de limón</td>
+                    <td><img class="food-img" src="html/ensalada.png" alt="Ensalada"></td>
+                </tr>
+                <tr>
+                    <td>Ensalada ligera</td>
+                    <td>2 Personas</td>
+                    <td>Lechuga, tomate, zanahoria</td>
+                    <td>Ensalada fresca con aderezo de limón</td>
+                    <td><img class="food-img" src="html/ensalada.png" alt="Ensalada"></td>
+                </tr>
+                <tr>
+                    <td>Ensalada ligera</td>
+                    <td>2 Personas</td>
+                    <td>Lechuga, tomate, zanahoria</td>
+                    <td>Ensalada fresca con aderezo de limón</td>
+                    <td><img class="food-img" src="html/ensalada.png" alt="Ensalada"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="note">*La imagen es de referencia del platillo</p>
+
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById("dropdownMenu");
+            dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown a')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function showTable(tableId) {
+            const tables = document.querySelectorAll('table');
+            tables.forEach(table => table.classList.remove('active'));
+            document.getElementById(tableId).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
+
+        
+

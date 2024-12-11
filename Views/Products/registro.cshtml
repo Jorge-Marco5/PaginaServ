@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #FFF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background-color: #990000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header a {
+            color: #FFF;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: serif;
+            font-size: 48px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            max-width: 700px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: #FFF;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #FFF;
+        }
+
+        th {
+            background-color: #444;
+        }
+
+        td {
+            background-color: #555;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .button-container button {
+            background-color: transparent;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        .consulta-btn {
+            margin-top: 30px;
+            padding: 12px 40px;
+            background-color: transparent;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            font-size: 18px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .consulta-btn:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        /* Estilos para el formulario de edición */
+        .form-container {
+            display: none;
+            margin-top: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+
+        .form-container label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+            text-align: left;
+            color: #FFD700;
+        }
+
+        .form-container input {
+            margin: 10px 0;
+            padding: 12px;
+            width: 100%;
+            border: 2px solid #FFD700;
+            background-color: #444;
+            color: #FFF;
+            font-size: 16px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container input:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        .form-container button {
+            background-color: transparent;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .form-container button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="nav-links">
+            <a asp-controller="Home" asp-action="home">Inicio</a>
+        </div>
+    </div>
+
+    <h1>Registra</h1>
+
+    <table id="foodTable">
+        <thead>
+            <tr>
+                <th>Verduras</th>
+                <th>Frutas</th>
+                <th>Proteínas</th>
+                <th>Condimentos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tomate</td>
+                <td>Zanahoria</td>
+                <td>Filete de pescado</td>
+                <td>Sal</td>
+                <td>
+                    <button class="edit-btn">Editar</button> 
+                    <button class="delete-btn">Borrar</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Papa</td>
+                <td>Uvas</td>
+                <td>Carne de res</td>
+                <td>Sal, Pimienta</td>
+                <td>
+                    <button class="edit-btn">Editar</button> 
+                    <button class="delete-btn">Borrar</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Calabaza</td>
+                <td>Ninguna</td>
+                <td>Carne de res</td>
+                <td>Sal, Pimienta</td>
+                <td>
+                    <button class="edit-btn">Editar</button> 
+                    <button class="delete-btn">Borrar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a type="submit" asp-controller="Products" asp-action="consultar" class="consulta-btn">Consulta</a>
+
+    <!-- Formulario de edición -->
+    <div class="form-container" id="editForm">
+        <h2>Editar Información</h2>
+        <form id="editFormContent">
+            <label for="editVerdura">Verdura:</label>
+            <input type="text" id="editVerdura" required>
+            <label for="editFruta">Fruta:</label>
+            <input type="text" id="editFruta" required>
+            <label for="editProteina">Proteína:</label>
+            <input type="text" id="editProteina" required>
+            <label for="editCondimentos">Condimentos:</label>
+            <input type="text" id="editCondimentos" required>
+            <button type="button" onclick="saveChanges()">Guardar cambios</button>
+        </form>
+    </div>
+
+    <script>
+        let editingRow = null;
+
+        // Función para mostrar el formulario de edición
+        function editRow(row) {
+            editingRow = row;
+            const cells = row.children;
+
+            // Cargar los valores actuales de la fila en el formulario
+            document.getElementById('editVerdura').value = cells[0].textContent;
+            document.getElementById('editFruta').value = cells[1].textContent;
+            document.getElementById('editProteina').value = cells[2].textContent;
+            document.getElementById('editCondimentos').value = cells[3].textContent;
+
+            // Mostrar el formulario de edición
+            document.getElementById('editForm').style.display = 'block';
+        }
+
+        // Función para guardar los cambios en la fila
+        function saveChanges() {
+            if (editingRow) {
+                const verdura = document.getElementById('editVerdura').value;
+                const fruta = document.getElementById('editFruta').value;
+                const proteina = document.getElementById('editProteina').value;
+                const condimentos = document.getElementById('editCondimentos').value;
+
+                // Actualizar los datos de la fila
+                editingRow.cells[0].textContent = verdura;
+                editingRow.cells[1].textContent = fruta;
+                editingRow.cells[2].textContent = proteina;
+                editingRow.cells[3].textContent = condimentos;
+            }
+
+            // Ocultar el formulario
+            cancelEdit();
+        }
+
+        // Función para cancelar la edición
+        function cancelEdit() {
+            document.getElementById('editForm').style.display = 'none';
+            editingRow = null;
+        }
+
+        // Función para eliminar una fila
+        function deleteRow(row) {
+            if (confirm("¿Estás seguro de que deseas eliminar esta fila?")) {
+                row.remove();
+            }
+        }
+
+        // Asignar eventos a los botones de editar y borrar
+        document.querySelectorAll('.edit-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => editRow(btn.closest('tr')));
+        });
+
+        document.querySelectorAll('.delete-btn').forEach((btn) => {
+            btn.addEventListener('click', () => deleteRow(btn.closest('tr')));
+        });
+    </script>
+
+</body>
+</html>
