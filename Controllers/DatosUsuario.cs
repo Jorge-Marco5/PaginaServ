@@ -5,7 +5,7 @@ public class DatosUsuarioController : Controller
 {
     [HttpPost]
     [Route("procesarFormulario")]
-    public IActionResult ProcesarFormulario(UsuarioModel usuario)
+    public IActionResult ProcesarFormulario(Usuario usuario)
     {
         // Accede a los datos enviados desde el formulario
         int edad = usuario.Edad;

@@ -1,7 +1,16 @@
-namespace MvcMovie.Models;
+namespace Usuario.Models
+{
+    public class Usuario
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Correo { get; set; }
+    }
+}
 
-public class UsuarioModel{
 
+
+/*
     public int Edad;
     public float Peso;
     public String Enfermedad;
@@ -45,6 +54,4 @@ public String getIngredientes() {
     }
     public void setIngredientes(String Ingredientes) {
         this.Ingredientes = Ingredientes;
-    }
-
-}
+    }*/
