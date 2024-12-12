@@ -1,11 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using MvcMovie.Models;
 
-public class DatosUsuarioController : Controller
+public class DatosUsuario : Controller
 {
+    public int Edad { get; private set; }
+    public float Peso { get; private set; }
+    public string Enfermedad { get; private set; }
+    public string Ingredientes { get; private set; }
+
     [HttpPost]
     [Route("procesarFormulario")]
-    public IActionResult ProcesarFormulario(Usuario usuario)
+    public IActionResult ProcesarFormulario(DatosUsuario usuario)
     {
         // Accede a los datos enviados desde el formulario
         int edad = usuario.Edad;

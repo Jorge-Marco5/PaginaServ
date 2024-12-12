@@ -1,31 +1,28 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using MvcMovie.Data;
 using MvcMovie.Models;
-using System.Linq; // Asegúrate de que estás usando el namespace correcto para LINQ
-using DbContextNamespace = ApplicationDbContext.Data; // Esto se debe mover fuera de la clase
+using DbContextNamespace = MvcMovie.Data;
 
 namespace MvcMovie.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly DbContextNamespace.ApplicationDbContext _context; // Cambiado a usar el alias DbContextNamespace
+        private readonly DbContextNamespace.ApplicationDbContext? context;
 
-        public HomeController(ILogger<HomeController> logger, DbContextNamespace.ApplicationDbContext context)
-        {
-            _logger = logger;
-            _context = context;
-        }
+        public ApplicationDbContext Context => context;
+
+        public DbContextNamespace.ApplicationDbContext GetContext() => Context;
 
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult home()
+        /*public IActionResult Home()
         {
             return View();
-        }
+        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -33,19 +30,20 @@ namespace MvcMovie.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        /*CONTROL DE LA CONEXION A LA BASE DE DATOS*/
-        public IActionResult TestConexion()
-        {
-            try
-            {
-                // Prueba básica: intenta contar registros de una tabla
-                var count = _context.Usuarios.Count(); // Asumiendo que Usuarios es una tabla en tu base de datos
-                return Content($"Conexión exitosa. Total registros en Usuarios: {count}");
-            }
-            catch (Exception ex)
-            {
-                return Content($"Error en la conexión: {ex.Message}");
-            }
-        }
+        /* CONTROL DE LA CONEXIÓN A LA BASE DE DATOS */
+        public IActionResult Home()
+{
+    try
+    {
+        // Contar registros en la tabla Usuarios
+        var count = GetContext().Usuarios.Count(); // Verifica que Usuarios sea un DbSet en ApplicationDbContext
+        return Content($"Conexión exitosa. Total registros en Usuarios: {count}");
+    }
+    catch (Exception ex)
+    {
+        return Content($"Error en la conexión: {ex.Message}");
+    }
+}
+
     }
 }
