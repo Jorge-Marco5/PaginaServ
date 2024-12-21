@@ -1,3 +1,5 @@
+@model IEnumerable<MvcMovie.Models.DatosSaludUsuario>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,6 +18,9 @@
             align-items: center;
             overflow-x: hidden;
         }
+    using MvcMovie.Data;
+    using MvcMovie.Data;
+    using Microsoft.EntityFrameworkCore;
 
         .header {
             background-color: #990000;
@@ -242,13 +247,17 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <tr>
-                    <td>40</td>
-                    <td>60 kg</td>
-                    <td>Ninguna</td>
-                    <td>Diabetes</td>
-                    <td><button class="edit-btn" onclick="editRow(this)">Editar</button></td>
-                </tr>
+
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Edad</td>
+                <td>@usuario.Peso</td>
+                <td>@usuario.Alergias</td>
+                <td>@usuario.Enfermedades</td>
+                <td>@usuario.FechaActualizacion</td>
+            </tr>
+        }
             </tbody>
         </table>
 

@@ -7,29 +7,45 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configuración del contexto y cadena de conexión
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer("Server=localhost;Database=BdPrueba;User Id=Admin1;Password=142753869;TrustServerCertificate=True;",
+    sqlOptions => sqlOptions.EnableRetryOnFailure(
+        maxRetryCount: 5, // Número máximo de reintentos
+        maxRetryDelay: TimeSpan.FromSeconds(10), // Retraso máximo entre reintentos
+        errorNumbersToAdd: null // Puedes agregar códigos de error específicos
+    )));
+
+// Agregar soporte para sesiones
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tiempo de inactividad
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuración del pipeline de solicitudes HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
+//Redireccionamiento de solicitudes HTTP
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
 
+// Habilitar el uso de sesiones
+app.UseSession();
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Login}/{id?}");
 
 app.Run();

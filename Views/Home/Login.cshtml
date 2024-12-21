@@ -1,0 +1,187 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/styles.css">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.header {
+    background-color: #990000;
+    width: 100%;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header button {
+    background: none;
+    border: none;
+    color: #FFF;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.header button:hover {
+    background-color: #800000;
+    border-radius: 5px;
+}
+
+.header .right-icon img {
+    width: 20px;
+}
+
+.login-container {
+    text-align: center;
+    max-width: 450px;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-top: 70px; /* To prevent overlap with header */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1rem;
+    text-align: left;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #bfbfbf;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.input-field:focus {
+    background-color: #fff;
+    outline: none;
+}
+
+.login-button {
+    background-color: #4d6460;
+    color: #FFF;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #3b4f4a;
+}
+
+.links-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.links-container a {
+    color: #FFF;
+    text-decoration: none;
+    margin: 5px 0;
+}
+</style>
+
+</head>
+<body>
+
+    <div class="header">
+        <div class="left-links">
+        </div>
+        <div class="right-icon">
+            <button  asp-controller="Account" asp-action="crear_perfil">
+                <img src="@Url.Content("~/images/Account/contacto.png")" alt="Perfil">
+            </button>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <div class="logo">
+            <img src="@Url.Content("~/images/Account/logo.png")" alt="Nour">
+        </div>
+        <h1>INICIAR SESIÓN PARA CONTINUAR</h1>
+        <form asp-action="Login" method="post">
+            <div class="form-group">
+                <label for="Correo">Correo:</label>
+                <input type="email" id="Correo" name="Correo" class="input-field" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Contrasena">Contraseña:</label>
+                <input type="password" id="Contrasena" name="Contrasena" class="input-field" required>
+            </div>
+
+    <button type="submit" class="login-button">Iniciar Sesión</button>
+        </form>
+
+        <div class="links-container">
+            <a asp-controller="Account" asp-action="cambiar_contraseña">¿Olvidó su contraseña?</a>
+            <a asp-controller="Account" asp-action="crear_perfil">Crear Perfil</a>
+        </div>
+    </div> 
+
+    @if (TempData["ErrorMessage"] != null)
+{
+    <div style="color: red;">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+</body>
+</html>

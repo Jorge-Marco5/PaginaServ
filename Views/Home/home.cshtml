@@ -153,10 +153,12 @@
                         <a asp-controller="Products" asp-action="registrar">Registrar</a>
                         <a asp-controller="Products" asp-action="consultar">Consultar</a>
                     </div>
+                            <a asp-controller="Account" asp-action="crear_perfil" class="contact-icon"><img src="@Url.Content("~/images/Account/contacto.png")" alt="Perfil" style="width: 20px; vertical-align: middle;"></a>
+
                 </div>
             </div>
         </div>
-        <a asp-controller="Account" asp-action="crear_perfil" class="contact-icon"><img src="@Url.Content("~/images/Account/contacto.png")" alt="Perfil" style="width: 20px; vertical-align: middle;"></a>
+        <h1>@ViewBag.UsuarioNombre</h1>
     </div>
 
     <div class="content">

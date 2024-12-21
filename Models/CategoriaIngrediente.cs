@@ -6,4 +6,7 @@ public class CategoriaIngrediente
 
     // Relación uno a muchos con Ingredientes
     public required ICollection<Ingrediente> Ingredientes { get; set; }
+
+    public ICollection<DetalleRegistroConsumo> DetalleRegistroConsumos { get; set; } = new List<DetalleRegistroConsumo>();
+    
 }

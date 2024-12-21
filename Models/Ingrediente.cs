@@ -7,4 +7,7 @@ public class Ingrediente
 
     // Relación muchos a uno con CategoriaIngrediente
     public required CategoriaIngrediente CategoriaIngrediente { get; set; }
+
+        public ICollection<IngredientePlatillo> IngredientesPlatillos { get; set; } = new List<IngredientePlatillo>();
+
 }

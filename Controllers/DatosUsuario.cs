@@ -5,8 +5,8 @@ public class DatosUsuario : Controller
 {
     public int Edad { get; private set; }
     public float Peso { get; private set; }
-    public string Enfermedad { get; private set; }
-    public string Ingredientes { get; private set; }
+    public string? Enfermedad { get; private set; }
+    public string? Ingredientes { get; private set; }
 
     [HttpPost]
     [Route("procesarFormulario")]
@@ -15,8 +15,8 @@ public class DatosUsuario : Controller
         // Accede a los datos enviados desde el formulario
         int edad = usuario.Edad;
         float peso = usuario.Peso;
-        string enfermedad = usuario.Enfermedad;
-        string ingredientes = usuario.Ingredientes;
+        string? enfermedad = usuario.Enfermedad;
+        string? ingredientes = usuario.Ingredientes;
 
         // Aquí puedes procesar los datos (guardar en la base de datos, etc.)
 

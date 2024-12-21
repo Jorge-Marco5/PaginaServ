@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {
+    "net8.0": {
       "Azure.Core/1.25.0": {
         "type": "package",
         "dependencies": {
@@ -4009,36 +4009,36 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net9.0": [
+    "net8.0": [
       "Microsoft.EntityFrameworkCore >= 8.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jose Manuel\\.nuget\\packages\\": {}
+    "C:\\Users\\luism\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jose Manuel\\Desktop\\dist\\PaginaServ\\MvcMovie.csproj",
+      "projectUniqueName": "C:\\Users\\luism\\OneDrive\\Escritorio\\serv\\PaginaServ\\MvcMovie.csproj",
       "projectName": "MvcMovie",
-      "projectPath": "C:\\Users\\Jose Manuel\\Desktop\\dist\\PaginaServ\\MvcMovie.csproj",
-      "packagesPath": "C:\\Users\\Jose Manuel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jose Manuel\\Desktop\\dist\\PaginaServ\\obj\\",
+      "projectPath": "C:\\Users\\luism\\OneDrive\\Escritorio\\serv\\PaginaServ\\MvcMovie.csproj",
+      "packagesPath": "C:\\Users\\luism\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\luism\\OneDrive\\Escritorio\\serv\\PaginaServ\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Jose Manuel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\luism\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net9.0"
+        "net8.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -4051,12 +4051,11 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
-      "net9.0": {
-        "targetAlias": "net9.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -4092,7 +4091,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
