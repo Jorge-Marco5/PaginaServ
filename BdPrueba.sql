@@ -77,3 +77,5 @@ INSERT INTO Usuarios (Correo, Contrasena, FechaRegistro) values ('mariolmc2008@g
 SELECT * FROM Usuarios;
 
 SELECT * FROM Salud;
+
+delete from Usuarios where IdUsuario >= '5';

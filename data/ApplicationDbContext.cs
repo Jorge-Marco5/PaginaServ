@@ -37,6 +37,9 @@ namespace MvcMovie.Data
                 .WithOne(d => d.Usuario)
                 .HasForeignKey<DatosSaludUsuario>(d => d.IdUsuario);
 
+            modelBuilder.Entity<Usuario>().ToTable("Usuarios"); // Nombre de la tabla en la base de datos
+
+
             // Configuración de DatosSaludUsuario
             modelBuilder.Entity<DatosSaludUsuario>()
                 .HasKey(d => d.IdUsuario);

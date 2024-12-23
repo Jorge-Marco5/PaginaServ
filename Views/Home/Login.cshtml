@@ -157,6 +157,23 @@ label {
         </div>
         <h1>INICIAR SESIÓN PARA CONTINUAR</h1>
         <form asp-action="Login" method="post">
+<!--Mensaje que muestra el registro correctamente-->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    @TempData["Mensaje"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+}
+<!--Mensaje que muestra errores en links-container credenciales-->
+    @if (TempData["ErrorMessage"] != null)
+{
+    <div style="color: red;">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
             <div class="form-group">
                 <label for="Correo">Correo:</label>
                 <input type="email" id="Correo" name="Correo" class="input-field" required>
@@ -176,12 +193,6 @@ label {
         </div>
     </div> 
 
-    @if (TempData["ErrorMessage"] != null)
-{
-    <div style="color: red;">
-        @TempData["ErrorMessage"]
-    </div>
-}
 
 </body>
 </html>

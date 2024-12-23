@@ -33,37 +33,35 @@ public class HomeController : Controller
                 HttpContext.Session.SetInt32("UsuarioId" ,usuario.IdUsuario);
                 HttpContext.Session.SetString("Correo",usuario.Correo);
                 HttpContext.Session.SetString("UsuarioNombre", usuario.UsuarioNombre);
-
                 // Redirigir al Home
                 return RedirectToAction("Home", "Home");
-
             }
             else
             {
                 // Si no se encontró el usuario o la contraseña es incorrecta, mostrar mensaje de error
                 TempData["ErrorMessage"] = "Credenciales incorrectas.";
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
         }
 
      // Página Home
-        public IActionResult Home()
-        {
-            var Correo = HttpContext.Session.GetString("Correo");
-            var UsuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
+    public IActionResult Home()
+    {
+        var Correo = HttpContext.Session.GetString("Correo");
+        var UsuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
 
-            if (string.IsNullOrEmpty(Correo) || string.IsNullOrEmpty(UsuarioNombre)){
-            // Si no hay datos, redirigir al login
-                return RedirectToAction("Login", "Login");
-            }
-
-            // Pasar los datos a la vista
-            ViewBag.Correo = Correo;
-            ViewBag.UsuarioNombre = UsuarioNombre;
-
-            return View();
-
+        if (string.IsNullOrEmpty(Correo) || string.IsNullOrEmpty(UsuarioNombre)){
+        // Si no hay datos, redirigir al login
+            return RedirectToAction("Login", "Home");
         }
+
+        // Pasar los datos a la vista
+        ViewBag.Correo = Correo;
+        ViewBag.UsuarioNombre = UsuarioNombre;
+
+        return View();
+
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

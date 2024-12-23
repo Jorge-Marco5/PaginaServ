@@ -1,3 +1,5 @@
+using MvcMovie.Models;
+
 public class Registro
 {
     public int IdRegistro { get; set; }
