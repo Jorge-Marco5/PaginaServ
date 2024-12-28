@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,6 +12,9 @@
             color: #FFF;
             margin: 0;
             padding: 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
@@ -123,9 +127,9 @@
         }
 
         table {
+            
             width: 100%;
             border-collapse: collapse;
-            display: none;
         }
 
         th, td {
@@ -152,7 +156,7 @@
         .note {
             font-size: 14px;
             color: #FF6347;
-            position: absolute;
+            position: relative;
             bottom: 10px;
             left: 10px;
         }
@@ -184,148 +188,62 @@
 
     <h1>Consulta</h1>
 
-    <div class="menu">
-        <button onclick="showTable('desayuno')">Desayuno</button>
-        <button onclick="showTable('comida')">Comida</button>
-        <button onclick="showTable('cenas')">Cenas</button>
-    </div>
+<div class="table-container">
 
-    <div class="table-container">
-        <table id="desayuno" class="active">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Porción</th>
-                    <th>Ingredientes</th>
-                    <th>Descripción</th>
-                    <th>Imagen</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Huevo con jamón</td>
-                    <td>2 Personas</td>
-                    <td>Huevo, jamón, uvas, manzana</td>
-                    <td>Huevo revuelto con jamón, decorado con frutas</td>
-                    <td><img class="food-img" src="html/huevo_jamon.png" alt="Huevo con jamón"></td>
-                </tr>
-                <tr>
-                    <td>Huevo con jamón</td>
-                    <td>2 Personas</td>
-                    <td>Huevo, jamón, uvas, manzana</td>
-                    <td>Huevo revuelto con jamón, decorado con frutas</td>
-                    <td><img class="food-img" src="html/huevo_jamon.png" alt="Huevo con jamón"></td>
-                </tr>
-                <tr>
-                    <td>Huevo con jamón</td>
-                    <td>2 Personas</td>
-                    <td>Huevo, jamón, uvas, manzana</td>
-                    <td>Huevo revuelto con jamón, decorado con frutas</td>
-                    <td><img class="food-img" src="html/huevo_jamon.png" alt="Huevo con jamón"></td>
-                </tr>
-            </tbody>
-        </table>
+@model IEnumerable<MvcMovie.ViewModels.CategoriaPlatillosViewModel>
 
-        <table id="comida">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Porción</th>
-                    <th>Ingredientes</th>
-                    <th>Descripción</th>
-                    <th>Imagen</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Pollo asado</td>
-                    <td>4 Personas</td>
-                    <td>Pollo, especias, limón</td>
-                    <td>Pollo asado al horno con especias y limón</td>
-                    <td><img class="food-img" src="html/pollo_asado.png" alt="Pollo asado"></td>
-                </tr>
-                <tr>
-                    <td>Pollo asado</td>
-                    <td>4 Personas</td>
-                    <td>Pollo, especias, limón</td>
-                    <td>Pollo asado al horno con especias y limón</td>
-                    <td><img class="food-img" src="html/pollo_asado.png" alt="Pollo asado"></td>
-                </tr>
-                <tr>
-                    <td>Pollo asado</td>
-                    <td>4 Personas</td>
-                    <td>Pollo, especias, limón</td>
-                    <td>Pollo asado al horno con especias y limón</td>
-                    <td><img class="food-img" src="html/pollo_asado.png" alt="Pollo asado"></td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <table id="cenas">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Porción</th>
-                    <th>Ingredientes</th>
-                    <th>Descripción</th>
-                    <th>Imagen</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Ensalada ligera</td>
-                    <td>2 Personas</td>
-                    <td>Lechuga, tomate, zanahoria</td>
-                    <td>Ensalada fresca con aderezo de limón</td>
-                    <td><img class="food-img" src="html/ensalada.png" alt="Ensalada"></td>
-                </tr>
-                <tr>
-                    <td>Ensalada ligera</td>
-                    <td>2 Personas</td>
-                    <td>Lechuga, tomate, zanahoria</td>
-                    <td>Ensalada fresca con aderezo de limón</td>
-                    <td><img class="food-img" src="html/ensalada.png" alt="Ensalada"></td>
-                </tr>
-                <tr>
-                    <td>Ensalada ligera</td>
-                    <td>2 Personas</td>
-                    <td>Lechuga, tomate, zanahoria</td>
-                    <td>Ensalada fresca con aderezo de limón</td>
-                    <td><img class="food-img" src="html/ensalada.png" alt="Ensalada"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<h2>Resultados</h2>
 
-    <p class="note">*La imagen es de referencia del platillo</p>
-
-    <script>
-        function toggleDropdown() {
-            const dropdownMenu = document.getElementById("dropdownMenu");
-            dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown a')) {
-                const dropdowns = document.getElementsByClassName("dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    const openDropdown = dropdowns[i];
-                    if (openDropdown.style.display === "block") {
-                        openDropdown.style.display = "none";
-                    }
-                }
+@if (ViewBag.Mensaje != null)
+{
+    <p style="color: red;">@ViewBag.Mensaje</p>
+}
+else
+{
+    if (Model.Any(categoria => categoria.Platillos.Any())) // Verificar si hay platillos en alguna categoría
+    {
+        foreach (var categoria in Model)
+        {
+            if (categoria.Platillos.Any(platillo => !string.IsNullOrEmpty(platillo.Ingredientes))) // Verificar si hay platillos con ingredientes en la categoría
+            {
+                <h3>@categoria.Categoria</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Porción</th>
+                            <th>Ingredientes</th>
+                            <th>Descripción</th>
+                            <th>Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var platillo in categoria.Platillos)
+                        {
+                            if (!string.IsNullOrEmpty(platillo.Ingredientes)) // Verificar que el platillo tenga ingredientes
+                            {
+                                <tr>
+                                    <td>@platillo.Nombre</td>
+                                    <td>@platillo.Porcion</td>
+                                    <td>@platillo.Ingredientes</td> <!-- Mostrar ingredientes aquí -->
+                                    <td>@platillo.Descripcion</td>
+                                    <td><img src="@Url.Content("~/images/" + platillo.Imagen)" alt="@platillo.Nombre" /></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
             }
         }
+    }
+}
 
-        function showTable(tableId) {
-            const tables = document.querySelectorAll('table');
-            tables.forEach(table => table.classList.remove('active'));
-            document.getElementById(tableId).classList.add('active');
-        }
-    </script>
+
+
+
+</div>
+
+<h1 class="note">*La imagen es de referencia del platillo</h1>
 
 </body>
 </html>
-
-        
-

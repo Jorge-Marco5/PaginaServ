@@ -1,9 +1,18 @@
+using MvcMovie.Models;
+
+namespace MvcMovie.Models{
+
 public class Platillo
 {
     public int IdPlatillo { get; set; }
-    public required string Nombre { get; set; }
-    public required string Porcion { get; set; }
-    public required string Descripcion { get; set; }
-    public required string Imagen { get; set; }
-    public ICollection<IngredientePlatillo> IngredientesPlatillos { get; set; } = new List<IngredientePlatillo>();
+    public string? Nombre { get; set; }
+    public string? Porcion { get; set; }
+    public  string? Descripcion { get; set; }
+    public string? Imagen { get; set; }
+    public  string? TipoPlatillo { get; set; }
+
+    public required ICollection<IngredientePlatillo> IngredientesPlatillos { get; set; }
+
+}
+
 }

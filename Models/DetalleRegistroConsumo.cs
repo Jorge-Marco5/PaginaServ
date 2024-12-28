@@ -1,4 +1,4 @@
-
+using MvcMovie.Models;
 public class DetalleRegistroConsumo
 {
     public int IdDetalle { get; set; } // Clave primaria y FK hacia Usuario

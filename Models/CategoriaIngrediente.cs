@@ -1,4 +1,5 @@
 // Modelo para CategoriaIngrediente
+namespace MvcMovie.Models{
 public class CategoriaIngrediente
 {
     public int IdCategoria { get; set; } // Clave primaria
@@ -9,4 +10,5 @@ public class CategoriaIngrediente
 
     public ICollection<DetalleRegistroConsumo> DetalleRegistroConsumos { get; set; } = new List<DetalleRegistroConsumo>();
     
+}
 }

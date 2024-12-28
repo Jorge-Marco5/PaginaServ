@@ -1,3 +1,5 @@
+@model MvcMovie.Models.IngredientesUsuario
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,6 +53,10 @@
             border-collapse: collapse;
             margin-top: 20px;
             color: #FFF;
+            align-items: center;
+            text-align: center;
+            position: relative;
+
         }
 
         th, td {
@@ -65,6 +71,27 @@
 
         td {
             background-color: #555;
+        }
+
+        td input{
+            font-size: large;
+            border-inline: 0;
+            width: 200px;
+            height: 40px;
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-consulta{
+            background-color: transparent;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: auto;
+            margin-top: 20px;
         }
 
         .button-container {
@@ -107,14 +134,13 @@
 
         /* Estilos para el formulario de edición */
         .form-container {
-            display: none;
             margin-top: 20px;
             background-color: #333;
             padding: 20px;
             border-radius: 10px;
-            width: 80%;
-            max-width: 500px;
+            width: auto;
             text-align: center;
+            align-items: center;
         }
 
         .form-container h2 {
@@ -134,7 +160,7 @@
         .form-container input {
             margin: 10px 0;
             padding: 12px;
-            width: 100%;
+            width: 200px;
             border: 2px solid #FFD700;
             background-color: #444;
             color: #FFF;
@@ -177,6 +203,17 @@
 
     <h1>Registra</h1>
 
+    <h2>Ingresé los ingredientes con los que cuenta separados por categoria</h2>
+    @if (TempData["MensajeIngredientes"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p style="color: red;">@TempData["MensajeIngredientes"]</p>
+    </div>
+}
+
+<div class="form-container">
+
+<form asp-action="registro" id="editFormContent" method="post">
     <table id="foodTable">
         <thead>
             <tr>
@@ -184,63 +221,46 @@
                 <th>Frutas</th>
                 <th>Proteínas</th>
                 <th>Condimentos</th>
-                <th>Acciones</th>
+                <!--<th>Acciones</th>-->
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Tomate</td>
-                <td>Zanahoria</td>
-                <td>Filete de pescado</td>
-                <td>Sal</td>
-                <td>
-                    <button class="edit-btn">Editar</button> 
+                <td><input type="text" name="Verduras" id="Verduras"></td>
+                <td><input type="text" name="Frutas" id="Frutas"></td>
+                <td><input type="text" name="Proteinas" id="Proteinas"></tdZ>
+                <td><input type="text" name="Condimentos" id="Condimentos"></td>
+                <!--<td>
+                    <button class="edit-btn">Editar</button>
                     <button class="delete-btn">Borrar</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Papa</td>
-                <td>Uvas</td>
-                <td>Carne de res</td>
-                <td>Sal, Pimienta</td>
-                <td>
-                    <button class="edit-btn">Editar</button> 
-                    <button class="delete-btn">Borrar</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Calabaza</td>
-                <td>Ninguna</td>
-                <td>Carne de res</td>
-                <td>Sal, Pimienta</td>
-                <td>
-                    <button class="edit-btn">Editar</button> 
-                    <button class="delete-btn">Borrar</button>
-                </td>
+                </td>-->
             </tr>
         </tbody>
     </table>
 
-    <a type="submit" asp-controller="Products" asp-action="consultar" class="consulta-btn">Consulta</a>
+            <button class="btn-consulta" type="submit" onclick="saveChanges()">Consultar</button>
+</form>
 
-    <!-- Formulario de edición -->
+</div>
+    <!-- Formulario de edición
     <div class="form-container" id="editForm">
         <h2>Editar Información</h2>
-        <form id="editFormContent">
-            <label for="editVerdura">Verdura:</label>
-            <input type="text" id="editVerdura" required>
-            <label for="editFruta">Fruta:</label>
-            <input type="text" id="editFruta" required>
-            <label for="editProteina">Proteína:</label>
-            <input type="text" id="editProteina" required>
-            <label for="editCondimentos">Condimentos:</label>
-            <input type="text" id="editCondimentos" required>
-            <button type="button" onclick="saveChanges()">Guardar cambios</button>
+        <form asp-action="registro" id="editFormContent" method="post">
+            <label for="Verduras">Verdura:</label>
+            <input type="text" name="Verduras" id="Verduras" required>
+            <label for="Frutas">Fruta:</label>
+            <input type="text" name="Frutas" id="Frutas" required>
+            <label for="Proteinas">Proteína:</label>
+            <input type="text" name="Proteinas" id="Proteinas" required>
+            <label for="Condimentos">Condimentos:</label>
+            <input type="text" name="Condimentos" id="Condimentos" required>
+
+            <button type="submit" onclick="saveChanges()">Guardar cambios</button>
         </form>
-    </div>
+    </div>-->
 
     <script>
-        let editingRow = null;
+       let editingRow = null;
 
         // Función para mostrar el formulario de edición
         function editRow(row) {
@@ -248,10 +268,10 @@
             const cells = row.children;
 
             // Cargar los valores actuales de la fila en el formulario
-            document.getElementById('editVerdura').value = cells[0].textContent;
-            document.getElementById('editFruta').value = cells[1].textContent;
-            document.getElementById('editProteina').value = cells[2].textContent;
-            document.getElementById('editCondimentos').value = cells[3].textContent;
+            document.getElementById('Verduras').value = cells[0].textContent;
+            document.getElementById('Frutas').value = cells[1].textContent;
+            document.getElementById('Proteinas').value = cells[2].textContent;
+            document.getElementById('Condimentos').value = cells[3].textContent;
 
             // Mostrar el formulario de edición
             document.getElementById('editForm').style.display = 'block';
@@ -260,10 +280,10 @@
         // Función para guardar los cambios en la fila
         function saveChanges() {
             if (editingRow) {
-                const verdura = document.getElementById('editVerdura').value;
-                const fruta = document.getElementById('editFruta').value;
-                const proteina = document.getElementById('editProteina').value;
-                const condimentos = document.getElementById('editCondimentos').value;
+                const verdura = document.getElementById('Verduras').value;
+                const fruta = document.getElementById('Frutas').value;
+                const proteina = document.getElementById('Proteinas').value;
+                const condimentos = document.getElementById('Condimentos').value;
 
                 // Actualizar los datos de la fila
                 editingRow.cells[0].textContent = verdura;

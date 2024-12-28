@@ -39,6 +39,9 @@ namespace MvcMovie.Data
 
             modelBuilder.Entity<Usuario>().ToTable("Usuarios"); // Nombre de la tabla en la base de datos
 
+            modelBuilder.Entity<IngredientePlatillo>().ToTable("IngredientesPlatillos"); // Nombre de la tabla en la base de datos
+
+            modelBuilder.Entity<Platillo>().ToTable("Platillos"); // Nombre de la tabla en la base de datos
 
             // Configuración de DatosSaludUsuario
             modelBuilder.Entity<DatosSaludUsuario>()
@@ -68,6 +71,21 @@ namespace MvcMovie.Data
             modelBuilder.Entity<IngredientePlatillo>()
                 .HasIndex(ip => new { ip.IdPlatillo, ip.IdIngrediente })
                 .IsUnique();
+
+
+            modelBuilder.Entity<IngredientePlatillo>()
+                .HasKey(ip => ip.IdIngredientePlatillo); // Llave primaria para IngredientePlatillo
+
+
+            modelBuilder.Entity<IngredientePlatillo>()
+                .HasOne(ip => ip.Platillo) // Relación con Platillo
+                .WithMany(p => p.IngredientesPlatillos)
+                .HasForeignKey(ip => ip.IdPlatillo);
+
+            modelBuilder.Entity<IngredientePlatillo>()
+                .HasOne(ip => ip.Ingrediente) // Relación con Ingrediente
+                .WithMany(i => i.IngredientesPlatillos)
+                .HasForeignKey(ip => ip.IdIngrediente);
 
             modelBuilder.Entity<IngredientePlatillo>()
                 .HasOne(ip => ip.Platillo)
@@ -101,6 +119,34 @@ namespace MvcMovie.Data
                 .HasOne(drc => drc.CategoriaIngrediente)
                 .WithMany(ci => ci.DetalleRegistroConsumos)
                 .HasForeignKey(drc => drc.IdCategoria);
+
+              // Relación entre Platillos e IngredientesPlatillos
+            modelBuilder.Entity<IngredientePlatillo>()
+                .HasOne(ip => ip.Platillo)
+                .WithMany(p => p.IngredientesPlatillos)
+                .HasForeignKey(ip => ip.IdPlatillo);
+
+            modelBuilder.Entity<IngredientePlatillo>()
+                .HasOne(ip => ip.Ingrediente)
+                .WithMany()
+                .HasForeignKey(ip => ip.IdIngrediente);
+
+                 // Relación muchos a muchos entre Platillo e Ingrediente
+    modelBuilder.Entity<IngredientePlatillo>()
+        .HasKey(ip => new { ip.IdPlatillo, ip.IdIngrediente });
+
+    modelBuilder.Entity<IngredientePlatillo>()
+        .HasOne(ip => ip.Platillo)
+        .WithMany(p => p.IngredientesPlatillos)
+        .HasForeignKey(ip => ip.IdPlatillo);
+
+    modelBuilder.Entity<IngredientePlatillo>()
+        .HasOne(ip => ip.Ingrediente)
+        .WithMany(i => i.IngredientesPlatillos)
+        .HasForeignKey(ip => ip.IdIngrediente);
+
+            base.OnModelCreating(modelBuilder);
+
         }
     }
 }

@@ -161,10 +161,9 @@ label {
 @if (TempData["Mensaje"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-    @TempData["Mensaje"]
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
+        @TempData["Mensaje"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }
 <!--Mensaje que muestra errores en links-container credenciales-->
     @if (TempData["ErrorMessage"] != null)
