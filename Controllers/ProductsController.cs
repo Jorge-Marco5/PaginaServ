@@ -20,7 +20,14 @@ public class ProductsController : Controller
 
     public IActionResult registrar()//Pagina de registro con los datos personales del usuario
     {
+        //Validacion de login
         var id = HttpContext.Session.GetInt32("UsuarioId");
+        var Correo = HttpContext.Session.GetString("Correo");
+        var UsuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
+        if (string.IsNullOrEmpty(Correo) || string.IsNullOrEmpty(UsuarioNombre)){
+        // Si no hay datos, redirigir al login
+            return RedirectToAction("Login", "Home");
+        }
 
         var usuario = _context.Salud.FirstOrDefault(u => u.IdUsuario == id); // Consulta los datos del usuario actual
 
@@ -42,6 +49,13 @@ public class ProductsController : Controller
 
     public IActionResult RegistrarVacio(){
 
+        var Correo = HttpContext.Session.GetString("Correo");
+        var UsuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
+
+        if (string.IsNullOrEmpty(Correo) || string.IsNullOrEmpty(UsuarioNombre)){
+        // Si no hay datos, redirigir al login
+            return RedirectToAction("Login", "Home");
+        }
             return View();// Cargamos la vista con el formulario de registro.
     }
 
@@ -89,6 +103,14 @@ public IActionResult RegistrarVacio(DatosSaludUsuario registrarUsuario)
 [HttpPost]
 public IActionResult registro(string Verduras, string Frutas, string Proteinas, string Condimentos)
 {
+    var Correo = HttpContext.Session.GetString("Correo");
+    var UsuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
+
+    if (string.IsNullOrEmpty(Correo) || string.IsNullOrEmpty(UsuarioNombre)){
+    // Si no hay datos, redirigir al login
+        return RedirectToAction("Login", "Home");
+    }
+
     var ingredientes = new List<string>();
 
     // Procesar cada categoría ingresada por el usuario
@@ -118,6 +140,14 @@ public IActionResult registro(string Verduras, string Frutas, string Proteinas, 
 
 public IActionResult Consultar()
 {
+    var Correo = HttpContext.Session.GetString("Correo");
+    var UsuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
+
+    if (string.IsNullOrEmpty(Correo) || string.IsNullOrEmpty(UsuarioNombre)){
+    // Si no hay datos, redirigir al login
+        return RedirectToAction("Login", "Home");
+    }
+
     // Recuperar los ingredientes ingresados por el usuario desde la sesión
     var ingredientesString = HttpContext.Session.GetString("IngredientesUsuario");
 

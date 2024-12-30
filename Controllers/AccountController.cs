@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MvcMovie.Models;
 using MvcMovie.Data;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 public class AccountController : Controller
 {
@@ -57,10 +60,7 @@ public class AccountController : Controller
     return View("crear_perfil");
 }
 
+    // GET: Muestra la vista para cambiar contraseña
 
-    public
-     IActionResult cambiar_contraseña()
-    {
-        return View(); // Esto cargará la vista en Views/Account/Register.cshtml
-    }
+
 }

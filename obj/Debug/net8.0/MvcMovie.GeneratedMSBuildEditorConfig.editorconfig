@@ -18,16 +18,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\luism\OneDrive\Escritorio\serv\PaginaServ
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/luism/OneDrive/Escritorio/serv/PaginaServ/Views/Account/cambiar_contraseña.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxjYW1iaWFyX2NvbnRyYXNlw7FhLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/luism/OneDrive/Escritorio/serv/PaginaServ/Views/Account/crear_perfil.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxjcmVhcl9wZXJmaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/luism/OneDrive/Escritorio/serv/PaginaServ/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/luism/OneDrive/Escritorio/serv/PaginaServ/Views/Home/cambiar_contraseña.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxjYW1iaWFyX2NvbnRyYXNlw7FhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/luism/OneDrive/Escritorio/serv/PaginaServ/Views/Home/home.cshtml]

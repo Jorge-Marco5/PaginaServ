@@ -157,13 +157,11 @@ label {
         </div>
         <h1>INICIAR SESIÓN PARA CONTINUAR</h1>
         <form asp-action="Login" method="post">
+
 <!--Mensaje que muestra el registro correctamente-->
-@if (TempData["Mensaje"] != null)
+@if (ViewBag.MensajeCambiarContraseña != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["Mensaje"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <p style="color: red;">@ViewBag.MensajeCambiarContraseña</p>
 }
 <!--Mensaje que muestra errores en links-container credenciales-->
     @if (TempData["ErrorMessage"] != null)
@@ -187,10 +185,10 @@ label {
         </form>
 
         <div class="links-container">
-            <a asp-controller="Account" asp-action="cambiar_contraseña">¿Olvidó su contraseña?</a>
+            <a asp-controller="Home" asp-action="cambiar_contraseña">¿Olvidó su contraseña?</a>
             <a asp-controller="Account" asp-action="crear_perfil">Crear Perfil</a>
         </div>
-    </div> 
+    </div>
 
 
 </body>

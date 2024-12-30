@@ -1,6 +1,5 @@
 
 namespace MvcMovie.Models{
-
 public class Usuario
 {
     public int IdUsuario { get; set; } // Clave primaria

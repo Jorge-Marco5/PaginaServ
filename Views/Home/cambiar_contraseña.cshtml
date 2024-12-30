@@ -1,3 +1,9 @@
+@model MvcMovie.Models.Usuario
+
+@{
+    ViewData["Title"] = "Cambiar Contraseña";
+}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -100,8 +106,7 @@
 
     <div class="header">
         <div class="left-links">
-            <a href="#inicio" onclick="window.location.href='iniciar_seccion.html'">Inicio</a>
-            <a href="#servicio">Servicio</a>
+            <a asp-controller="Home" asp-action="home">Inicio</a>
         </div>
         <div class="right-icon">
             <a href="#perfil"><img src="@Url.Content("~/images/Account/contacto.png")" alt="Perfil"></a>
@@ -113,17 +118,29 @@
     </div>
 
     <div class="change-password-container">
+
+    @if (TempData["MensajeCambiarContraseña"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["MensajeCambiarContraseña"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
         <h1>CAMBIAR CONTRASEÑA</h1>
-        <form action="#" method="post">
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" class="input-field" required><br>
-            
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" class="input-field" required><br>
-            
-            <label for="confirmar-contrasena">Confirmar Contraseña:</label>
-            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" class="input-field" required><br>
-            
+        <form asp-action="cambiar_contraseña" asp-controller="Home" method="post">
+
+            <label for="usuario">Correo:</label>
+            <input type="text" id="correo" name="correo" class="input-field" required><br>
+
+            <label for="contrasena">Contraseña Actual:</label>
+            <input type="password" id="contrasena_Actual" name="contrasena_Actual" class="input-field" required><br>
+
+            <label for="contrasena">Nueva contraseña:</label>
+            <input type="password" id="nueva_contrasena" name="nueva_contrasena" class="input-field" required><br>
+
+            <label for="confirmar-contrasena">Confirmar contraseña:</label>
+            <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" class="input-field" required><br>
+
             <button type="submit" class="accept-button">Aceptar</button>
         </form>
     </div>

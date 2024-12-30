@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
 
@@ -85,4 +86,61 @@ public class HomeController : Controller
             return Content($"Error en la conexión: {ex.Message}");
         }
     }
+
+
+    public IActionResult cambiar_contraseña()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> cambiar_contraseña(string correo, string contrasena_Actual, string nueva_contrasena , string confirmar_contraseña)
+    {
+        if (
+            string.IsNullOrWhiteSpace(correo) ||
+            string.IsNullOrWhiteSpace(contrasena_Actual) ||
+            string.IsNullOrWhiteSpace(nueva_contrasena) ||
+            string.IsNullOrWhiteSpace(confirmar_contraseña))
+        {
+            ViewBag.MensajeCambiarContraseña = "Todos los campos son obligatorios.";
+            return View();
+        }
+
+        Console.WriteLine($"Correo:{correo}, $Contraseña Actual:{contrasena_Actual}, $Nueva contraseña:{nueva_contrasena}, $Confirmar contraseña:{confirmar_contraseña}");
+
+        // Busca el usuario en la base de datos
+        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Correo == correo);
+
+        if (usuario == null)
+        {
+            ViewBag.MensajeCambiarContraseña = "Usuario no encontrado.";
+            return View();
+        }
+
+        // Verifica que la contraseña actual coincida
+        if (usuario.Contrasena != contrasena_Actual)
+        {
+            ViewBag.MensajeCambiarContraseña = "La contraseña actual es incorrecta.";
+            return View();
+        }
+
+        //Verificar que las nuevas contraseñas coincidan
+        if (nueva_contrasena != confirmar_contraseña)
+        {
+            ViewBag.MensajeCambiarContraseña = "Las contraseñas nuevas no coinciden";
+            return View();
+        }
+
+        // Cambia la contraseña
+        usuario.Contrasena = confirmar_contraseña;
+
+        // Guarda los cambios en la base de datos
+        _context.Usuarios.Update(usuario);
+        await _context.SaveChangesAsync();
+
+        ViewBag.MensajeCambiarContraseña = "Contraseña actualizada con éxito.";
+        return View();
+        //RedirectToAction("Login", "Home");
+    }
+
 }
