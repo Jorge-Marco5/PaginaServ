@@ -13,9 +13,9 @@ Instalación de Librerías:
 Verifica que las siguientes librerías estén correctamente instaladas. Para hacerlo, abre una terminal en la carpeta raíz del proyecto (en VSCode, usa Ctrl + ñ) y ejecuta los comandos:
 
     dotnet add package Microsoft.EntityFrameworkCore
-   
+
     dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-   
+
     dotnet add package Microsoft.EntityFrameworkCore.Tools
 
 **Pasos para Ejecutar la Aplicación**
@@ -48,8 +48,13 @@ Abre un navegador web y accede a: http://localhost:5237.
 
 Usa las siguientes credenciales para iniciar sesión:
     
-    Correo: correo123@gmail.com
-    Contraseña: 123456
+Correo: 
+    
+    correo123@gmail.com
+    
+Contraseña: 
+    
+    123456
 
 Detener el Servidor:
 
