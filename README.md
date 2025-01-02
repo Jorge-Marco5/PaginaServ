@@ -31,18 +31,21 @@ Acceso a la Aplicación:
 
 Una vez iniciada, deberías ver el siguiente mensaje en la terminal:
 
-info: Microsoft.Hosting.Lifetime[14]
-    Now listening on: http://localhost:5237
-info: Microsoft.Hosting.Lifetime[0]
-    Application started. Press Ctrl+C to shut down.
-info: Microsoft.Hosting.Lifetime[0]
-    Hosting environment: Development
-info: Microsoft.Hosting.Lifetime[0]
-    Content root path: C:\Users\luism\OneDrive\Escritorio\serv\PaginaServ
+    info: Microsoft.Hosting.Lifetime[14]
+        Now listening on: http://localhost:5237
+    info: Microsoft.Hosting.Lifetime[0]
+        Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+        Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+        Content root path: C:\Users\luism\OneDrive\Escritorio\serv\PaginaServ
+
 Abre un navegador web y accede a: http://localhost:5237.
-Login Inicial:
+
+**Login Inicial:**
 
 Usa las siguientes credenciales para iniciar sesión:
+    
     Correo: correo123@gmail.com
     Contraseña: 123456
 
@@ -63,35 +66,36 @@ Modificaciones al Código:
 
 NombreDelProyecto
 
-├── Controllers                // Lógica de la aplicación
-│   └── HomeController.cs      // Ejemplo de controlador
-│
-├── Models                     // Modelos de datos (Getters y Setters)
-│   └── LoginViewModel.cs      // Ejemplo de modelo
-│
-├── Views                      // Vistas (HTML + Razor)
-│   ├── Home                   // Vistas para el controlador Home
-│   │   └── Index.cshtml
-│   ├── Shared                 // Vistas compartidas
-│   │   └── _Layout.cshtml
-│   └── _ViewImports.cshtml
-│   └── _ViewStart.cshtml
-│
-├── wwwroot                    // Archivos estáticos
-│   ├── css                    // Hojas de estilos
-│   │   └── site.css
-│   ├── js                     // JavaScript
-│   │   └── site.js
-│   └── lib                    // Bibliotecas externas (Bootstrap, jQuery, etc.)
-│       ├── bootstrap
-│       └── jquery
-│
-├── appsettings.json           // Configuración (e.g., cadena de conexión)
-├── Program.cs                 // Punto de entrada de la aplicación
-└── Startup.cs                 // Configuración de servicios
+    ├── Controllers                // Lógica de la aplicación
+    │   └── HomeController.cs      // Ejemplo de controlador
+    │
+    ├── Models                     // Modelos de datos (Getters y Setters)
+    │   └── LoginViewModel.cs      // Ejemplo de modelo
+    │
+    ├── Views                      // Vistas (HTML + Razor)
+    │   ├── Home                   // Vistas para el controlador Home
+    │   │   └── Index.cshtml
+    │   ├── Shared                 // Vistas compartidas
+    │   │   └── _Layout.cshtml
+    │   └── _ViewImports.cshtml
+    │   └── _ViewStart.cshtml
+    │
+    ├── wwwroot                    // Archivos estáticos
+    │   ├── css                    // Hojas de estilos
+    │   │   └── site.css
+    │   ├── js                     // JavaScript
+    │   │   └── site.js
+    │   └── lib                    // Bibliotecas externas (Bootstrap, jQuery, etc.)
+    │       ├── bootstrap
+    │       └── jquery
+    │
+    ├── appsettings.json           // Configuración (e.g., cadena de conexión)
+    ├── Program.cs                 // Punto de entrada de la aplicación
+    └── Startup.cs                 // Configuración de servicios
+
 Configuración de Imágenes en las Vistas
 Para mostrar imágenes en las vistas, utiliza la siguiente estructura:
+    
+    <img src="@Url.Content("~/images/Products/plato.png")" alt="Plato de comida">
 
-
-<img src="@Url.Content("~/images/Products/plato.png")" alt="Plato de comida">
 Asegúrate de guardar las imágenes en la carpeta wwwroot/images.
