@@ -1,5 +1,3 @@
-<em> #README de Proyecto en .NET con Entity Framework (MVC) </em>
-
 **Requisitos Previos**
 
 Base de Datos:
@@ -57,16 +55,24 @@ Para detener la ejecución del servidor, regresa a la terminal y presiona Ctrl +
 
 Modificaciones al Código:
 
-    Si realizas cambios en el código, asegúrate de:
-    Detener el servidor (Ctrl + C).
-    Volver a compilar (dotnet build).
-    Ejecutar de nuevo (dotnet run).
-    Posibles Problemas
-    Consulta de Ingredientes:
-    Si la funcionalidad para consultar ingredientes no funciona, verifica que:
-    Existan registros en las tablas ingredientes y platillos.
-    Las relaciones estén correctamente configuradas en la tabla ingredientesPlatillos.
-    Estructura del Proyecto
+Si realizas cambios en el código, asegúrate de:
+
+Detener el servidor (Ctrl + C).
+
+Volver a compilar (dotnet build).
+Ejecutar de nuevo (dotnet run).
+
+**Posibles Problemas**
+
+Consulta de Ingredientes:
+
+Si la funcionalidad para consultar ingredientes no funciona, verifica que:
+
+1. Existan registros en las tablas ingredientes y platillos.
+
+2. Las relaciones estén correctamente configuradas en la tabla ingredientesPlatillos.
+
+**Estructura del Proyecto**
 
 NombreDelProyecto
 
