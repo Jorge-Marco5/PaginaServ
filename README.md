@@ -1,5 +1,7 @@
-README de Proyecto en .NET con Entity Framework (MVC)
-Requisitos Previos
+<em> #README de Proyecto en .NET con Entity Framework (MVC) </em>
+
+**Requisitos Previos**
+
 Base de Datos:
 
 Asegúrate de tener cargada la base de datos BdPrueba.sql en tu instancia de SQL Server. Esta base de datos contiene la estructura necesaria para el funcionamiento del programa.
@@ -9,27 +11,24 @@ Es necesario tener instalada la versión 8.0 de la Plataforma .NET en tu máquin
 Instalación de Librerías:
 
 Verifica que las siguientes librerías estén correctamente instaladas. Para hacerlo, abre una terminal en la carpeta raíz del proyecto (en VSCode, usa Ctrl + ñ) y ejecuta los comandos:
-bash
-Copiar código
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-Pasos para Ejecutar la Aplicación
+
+    dotnet add package Microsoft.EntityFrameworkCore
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+    dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+**Pasos para Ejecutar la Aplicación**
 Compilación del Proyecto:
 
 Compila la aplicación ejecutando:
-bash
-Copiar código
-dotnet build
-Ejecución del Servidor:
+
+    dotnet build
+    Ejecución del Servidor:
 
 Inicia el servidor de .NET ejecutando:
-bash
-Copiar código
-dotnet run
-Acceso a la Aplicación:
 
-Una vez iniciada, deberías ver el siguiente mensaje en la terminal:
+    dotnet run
+
+Acceso a la Aplicación, Una vez iniciada, deberías ver el siguiente mensaje en la terminal:
 
     info: Microsoft.Hosting.Lifetime[14]
         Now listening on: http://localhost:5237
@@ -50,6 +49,7 @@ Usa las siguientes credenciales para iniciar sesión:
     Contraseña: 123456
 
 Detener el Servidor:
+
 Para detener la ejecución del servidor, regresa a la terminal y presiona Ctrl + C.
 Modificaciones al Código:
 
@@ -93,7 +93,7 @@ NombreDelProyecto
     ├── Program.cs                 // Punto de entrada de la aplicación
     └── Startup.cs                 // Configuración de servicios
 
-Configuración de Imágenes en las Vistas
+**Configuración de Imágenes en las Vistas**
 Para mostrar imágenes en las vistas, utiliza la siguiente estructura:
     
     <img src="@Url.Content("~/images/Products/plato.png")" alt="Plato de comida">
