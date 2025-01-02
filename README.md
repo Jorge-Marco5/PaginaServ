@@ -20,6 +20,7 @@ Verifica que las siguientes librerías estén correctamente instaladas. Para hac
 
     dotnet add package Microsoft.EntityFrameworkCore.Tools
 **Pasos para Ejecutar la Aplicación**
+
 Compilación del Proyecto:
 
 Compila la aplicación ejecutando:
