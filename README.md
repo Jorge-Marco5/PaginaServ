@@ -5,9 +5,11 @@
 Base de Datos:
 
 Asegúrate de tener cargada la base de datos BdPrueba.sql en tu instancia de SQL Server. Esta base de datos contiene la estructura necesaria para el funcionamiento del programa.
+
 Versión de .NET:
 
 Es necesario tener instalada la versión 8.0 de la Plataforma .NET en tu máquina.
+
 Instalación de Librerías:
 
 Verifica que las siguientes librerías estén correctamente instaladas. Para hacerlo, abre una terminal en la carpeta raíz del proyecto (en VSCode, usa Ctrl + ñ) y ejecuta los comandos:
@@ -22,7 +24,8 @@ Compilación del Proyecto:
 Compila la aplicación ejecutando:
 
     dotnet build
-    Ejecución del Servidor:
+
+Ejecución del Servidor:
 
 Inicia el servidor de .NET ejecutando:
 
@@ -51,6 +54,7 @@ Usa las siguientes credenciales para iniciar sesión:
 Detener el Servidor:
 
 Para detener la ejecución del servidor, regresa a la terminal y presiona Ctrl + C.
+
 Modificaciones al Código:
 
     Si realizas cambios en el código, asegúrate de:
