@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MvcMovie.Models;
-
+//ESTE CONTROLADOR NO SE USA
 public class DatosUsuario : Controller
 {
     public int Edad { get; private set; }

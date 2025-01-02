@@ -1,35 +1,37 @@
 use BdPrueba;
 
--- Tabla de Categorías de Ingredientes
+-- Tabla de Categorï¿½as de Ingredientes
 CREATE TABLE CategoriasIngredientes (
     IdCategoria INT IDENTITY PRIMARY KEY,
-    Nombre NVARCHAR(50) NOT NULL UNIQUE -- Ej. 'Verdura', 'Fruta', 'Proteína', 'Condimento'
+    Nombre NVARCHAR(50) NOT NULL UNIQUE -- Ej. 'Verdura', 'Fruta', 'Proteï¿½na', 'Condimento'
 );
 
 -- Tabla de Ingredientes
 CREATE TABLE Ingredientes (
     IdIngrediente INT IDENTITY PRIMARY KEY,
     IdCategoria INT NOT NULL,
-    Nombre NVARCHAR(50) NOT NULL UNIQUE, -- Ej. 'Tomate', 'Manzana'
+    Nombre NVARCHAR(50) NOT NULL UNIQUE, --VERIFICA QUE CADA INGREDEINTE QUE AGREGUES INICIE CON LA PRIMERA LETRA MAYUSCULA.
     FOREIGN KEY (IdCategoria) REFERENCES CategoriasIngredientes(IdCategoria)
 );
 
 -- Tabla de Platillos
 CREATE TABLE Platillos (
     IdPlatillo INT IDENTITY PRIMARY KEY,
-    Nombre NVARCHAR(100) NOT NULL UNIQUE, -- Ej. 'Huevo con jamón'
+    Nombre NVARCHAR(100) NOT NULL UNIQUE, -- Ej. 'Huevo con jamï¿½n'
     Porcion NVARCHAR(50),                 -- Ej. '2 Personas'
-    Descripcion NVARCHAR(255),			-- Ej. 'Huevo revuelto con jamón decorado con frutas'
+    Descripcion NVARCHAR(255),			-- Ej. 'Huevo revuelto con jamï¿½n decorado con frutas'
     Imagen NVARCHAR(255)     ,            -- URL o nombre de archivo de la imagen
-	TipoPlatillo VARCHAR(255)
+	TipoPlatillo VARCHAR(50)
 );
 
--- Relación entre Ingredientes y Platillos (Muchos a Muchos)
+-- Relaciï¿½n entre Ingredientes y Platillos (Muchos a Muchos)
+--la relacion entre ingredientes y platillos es por ID
+-- es decir el platillo1 esta relacionado con ingrediente1, ingrediente2, etc
 CREATE TABLE IngredientesPlatillos (
     IdIngredientePlatillo INT IDENTITY PRIMARY KEY,
     IdPlatillo INT NOT NULL,
     IdIngrediente INT NOT NULL,
-    Cantidad INT(50) NOT NULL,      -- Ej. '2 piezas', '100 gramos'
+    Cantidad INT NOT NULL,      -- Ej. '2 piezas', '100 gramos'
     FOREIGN KEY (IdPlatillo) REFERENCES Platillos(IdPlatillo),
     FOREIGN KEY (IdIngrediente) REFERENCES Ingredientes(IdIngrediente),
     CONSTRAINT UQ_IngredientesPlatillos UNIQUE (IdPlatillo, IdIngrediente) -- Evitar duplicados
@@ -39,18 +41,22 @@ CREATE TABLE IngredientesPlatillos (
 CREATE TABLE Usuarios (
     IdUsuario INT IDENTITY PRIMARY KEY,
     Correo NVARCHAR(100) NOT NULL UNIQUE,
-    Contrasena NVARCHAR(255) NOT NULL,  -- Encriptar las contraseñas
+    Contrasena NVARCHAR(255) NOT NULL,  -- Encriptar las contraseï¿½as
     FechaRegistro DATETIME DEFAULT GETDATE()
 );
+
+INSERT INTO Usuarios (Correo, Contrasena, FechaRegistro, UsuarioNombre)
+VALUES
+    ('correo123@gmail.com','123456','02/01/2025', 'Usuario1')
 
 -- Tabla de Salud de Usuarios
 CREATE TABLE Salud (
     IdSalud INT IDENTITY PRIMARY KEY,
     IdUsuario INT NOT NULL,
     Edad INT NOT NULL,
-    Peso DECIMAL(5, 2) NOT NULL,        -- Precisión adecuada para pesos
-    Alergias NVARCHAR(255) NOT NULL DEFAULT 'Ninguna', 
-    Enfermedades NVARCHAR(255) NOT NULL DEFAULT 'Ninguna',
+    Peso DECIMAL(5, 2) NOT NULL,        -- Precisiï¿½n adecuada para pesos
+    Alergias VARCHAR(255) NOT NULL DEFAULT 'Ninguna', 
+    Enfermedades VARCHAR(255) NOT NULL DEFAULT 'Ninguna',
     FechaActualizacion DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (IdUsuario) REFERENCES Usuarios(IdUsuario) ON DELETE CASCADE
 );
@@ -63,7 +69,7 @@ CREATE TABLE Registros (
     FOREIGN KEY (IdUsuario) REFERENCES Usuarios(IdUsuario) ON DELETE CASCADE
 );
 
--- Relación entre Categorías y Consumo Diario
+-- Relaciï¿½n entre Categorï¿½as y Consumo Diario
 CREATE TABLE DetalleRegistroConsumo (
     IdDetalle INT IDENTITY PRIMARY KEY,
     IdRegistro INT NOT NULL,
@@ -72,8 +78,6 @@ CREATE TABLE DetalleRegistroConsumo (
     FOREIGN KEY (IdRegistro) REFERENCES Registros(IdRegistro),
     FOREIGN KEY (IdCategoria) REFERENCES CategoriasIngredientes(IdCategoria)
 );
-
-INSERT INTO Usuarios (Correo, Contrasena, FechaRegistro) values ('mariolmc2008@gmail.com', '123456','19/02/2024');
 
 SELECT * FROM Usuarios;
 
@@ -86,9 +90,6 @@ SELECT * FROM Platillos;
 SELECT * FROM DetalleRegistroConsumo;
 
 SELECT * FROM IngredientesPlatillos;
-
-delete from Usuarios where IdUsuario >= '5';
-
 
 
 SELECT
@@ -110,6 +111,6 @@ GROUP BY
 ORDER BY
     p.Nombre;
 
-
-Atun con verduras salteadas (Cebolla, Zanahoria, Calabaza, Chile Serrano, Atun, Ajo, Oregano, Sal)
-Huevo con jamon	(Desayuno	Huevo, Sal, Jamon)
+--Platillos e ingredientes de referencia:
+--Atun con verduras salteadas (Cebolla, Zanahoria, Calabaza, Chile Serrano, Atun, Ajo, Oregano, Sal)
+--Huevo con jamon	(Desayuno	Huevo, Sal, Jamon)

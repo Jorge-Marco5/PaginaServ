@@ -1,8 +1,6 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
-using MvcMovie.Models;
 
 public class HomeController : Controller
 {
@@ -64,13 +62,6 @@ public class HomeController : Controller
 
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
-
-
     //Controlador para verificar la conexion a la base de datos,
     //y realiza un conteo de los usuarios registrados
     public IActionResult Conexion()
@@ -87,12 +78,12 @@ public class HomeController : Controller
         }
     }
 
-
+    //MOSTRAMOS LA VISTA PARA CAMBIAR LA CONTRASEÑA.
     public IActionResult cambiar_contraseña()
     {
         return View();
     }
-
+    //LOGICA DE LA APLICACION PARA CAMBIAR LA CONTRASEÑA DE CADA USUARIO
     [HttpPost]
     public async Task<IActionResult> cambiar_contraseña(string correo, string contrasena_Actual, string nueva_contrasena , string confirmar_contraseña)
     {

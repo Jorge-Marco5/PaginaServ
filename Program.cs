@@ -5,7 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// Configuración del contexto y cadena de conexión
+// Configuración del contexto y la cadena de conexion
+//VERIFICA QUE LOS DATOS QUE INGRESAS NO TENGAN COMILlAS.
+//Nombre del servidor| Nombre de la base de datos| Nombre del usuario| Contraseña| Verificacion del certificado de la cuenta.
+//VERIFICA LAS TABLAS EN EL ARCHIVO .SQL DEBIDO A QUE REALIZE CAMBIOS EN ALGUNAS TABLAS
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer("Server=localhost;Database=BdPrueba;User Id=Admin1;Password=142753869;TrustServerCertificate=True;",
     sqlOptions => sqlOptions.EnableRetryOnFailure(

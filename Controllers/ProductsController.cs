@@ -7,7 +7,7 @@ using MvcMovie.Models;
 public class ProductsController : Controller
 {
     private readonly ApplicationDbContext _context;
-
+    //CARGAMOS EL CONTEXTO DE LA CONEXION A LA BASE DE DATOS EN ESTE CONTROLADOR PARA PODER REALIZAR LAS CONSULTAS.
     public ProductsController(ApplicationDbContext context)
     {
         _context = context;
@@ -28,8 +28,8 @@ public class ProductsController : Controller
         // Si no hay datos, redirigir al login
             return RedirectToAction("Login", "Home");
         }
-
-        var usuario = _context.Salud.FirstOrDefault(u => u.IdUsuario == id); // Consulta los datos del usuario actual
+        // Consulta los datos del usuario actual
+        var usuario = _context.Salud.FirstOrDefault(u => u.IdUsuario == id); 
 
         if (usuario == null)
         {
@@ -46,9 +46,9 @@ public class ProductsController : Controller
         }
 
     }
-
+    //EN CASO DE QUE NO HAYA REGISTROS DE UN USUARIO EN LA BASE DE DATOS MUESTRA LA TABLA DE REGISTRO VACIA.
     public IActionResult RegistrarVacio(){
-
+        //VERIFICAMOS SI HAY UN INICIO DE SESION ACTIVO, SI NO REDIRIGIMOS AL LOGIN.
         var Correo = HttpContext.Session.GetString("Correo");
         var UsuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
 
@@ -59,6 +59,7 @@ public class ProductsController : Controller
             return View();// Cargamos la vista con el formulario de registro.
     }
 
+//LOGICA PARA REGISTRAR LOS DATOS DE SALUD DEL USUARIO
 [HttpPost]
 public IActionResult RegistrarVacio(DatosSaludUsuario registrarUsuario)
 {
@@ -94,12 +95,13 @@ public IActionResult RegistrarVacio(DatosSaludUsuario registrarUsuario)
     // Si hay errores de validación, devolver el formulario con los errores
     return View("RegistrarVacio");
 }
-
+    //MOSTRAMOS LA VISTA DONDE EL USUARIO INGRESA LOS INGREDIENTES CON LOS QUE CUENTA
     public IActionResult registro()//Ingresa los datos de los Ingredientes con los que cuenta el usuario
     {
         return View(); // Cargará Views/Products/registro.cshtml
     }
 
+//LOGICA PARA OBTENER LOS INGREDIENTES QUE INGRESA EL USUARIO.
 [HttpPost]
 public IActionResult registro(string Verduras, string Frutas, string Proteinas, string Condimentos)
 {
@@ -137,9 +139,10 @@ public IActionResult registro(string Verduras, string Frutas, string Proteinas, 
     {
         return View(); // CargaráS Views/Products/registro.cshtml
     }*/
-
+//MOSTRAMOS LA VISTA QUE OBTIENE LOS PLATILLOS QUE PUEDE REALIZAR EL USUARIO
 public IActionResult Consultar()
 {
+    //En caso de que no haya un usuario registrado redirigimos a la pagina del login.
     var Correo = HttpContext.Session.GetString("Correo");
     var UsuarioNombre = HttpContext.Session.GetString("UsuarioNombre");
 
@@ -150,7 +153,7 @@ public IActionResult Consultar()
 
     // Recuperar los ingredientes ingresados por el usuario desde la sesión
     var ingredientesString = HttpContext.Session.GetString("IngredientesUsuario");
-
+    //si no se ingresaron ingredientes redirigimos a la pagina de registro.
     if (string.IsNullOrEmpty(ingredientesString))
     {
         TempData["MensajeIngredientes"] = "No se ingresaron ingredientes.";
@@ -172,8 +175,8 @@ public IActionResult Consultar()
     // Filtrar los platillos en memoria para obtener aquellos que contengan TODOS los ingredientes requeridos
     var platillosFiltrados = platillosConIngredientes
         .Where(p => p.IngredientesPlatillos
-            .All(ip => ingredientesCapitalizados.Contains(ip.Ingrediente.Nombre)) &&
-            p.IngredientesPlatillos.Any(ip => ingredientesCapitalizados.Contains(ip.Ingrediente.Nombre))) // Verificar que tengan ingredientes
+        .All(ip => ingredientesCapitalizados.Contains(ip.Ingrediente.Nombre)) &&
+        p.IngredientesPlatillos.Any(ip => ingredientesCapitalizados.Contains(ip.Ingrediente.Nombre))) // Verificar que tengan ingredientes
         .GroupBy(p => p.TipoPlatillo)
         .Select(g => new CategoriaPlatillosViewModel
         {
@@ -190,11 +193,12 @@ public IActionResult Consultar()
         .Where(categoria => categoria.Platillos.Any()) // Verificar que haya platillos en la categoría
         .ToList();
 
+    //En caso de que no se encuentren platillos con esos ingredientes, redirigimos a la vista de registro
+    //con el mensaje de que no se encontraron platillos.
     if (!platillosFiltrados.Any())
     {
         TempData["MensajeIngredientes"] = "No se encontraron platillos con los ingredientes proporcionados";
                 return RedirectToAction("registro", "Products");
-
     }
     else
     {
@@ -210,12 +214,14 @@ public IActionResult Consultar()
             Console.WriteLine($"Platillo: {platillo.Nombre}, Ingredientes: {platillo.Ingredientes}");
         }
     }
-
+    //Mostramos la vista con los paltillos que se encuentran en la base de datos.
     return View(platillosFiltrados);
 }
 
 
 // Función que capitaliza la primera letra de cada palabra
+//Como la palabra de cada ingrediente inicia con una letra mayuscula, todas los ingredientes que ingresa el 
+//usuario convertimos las palabras para que inicien con una letra mayuscula.
 private string CapitalizarPalabras(string texto)
 {
     var palabras = texto.Split(' ');
